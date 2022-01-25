@@ -1,8 +1,8 @@
 {
-	"bot_token": "<bot token>",
-	"update_times_ms": 30000,
-	"servers": [
-		["Vanilla", "8.8.8.8:25566", "About server"],
-		["Vanilla 2", "8.8.8.8", "About server. Used default 25565 port"]
-	]
+  "bot_token": "<bot token>",
+  "update_times_ms": 30000,
+  "servers": [
+    ["Vanilla", "8.8.8.8:25566", "About server"],
+    ["Vanilla 2", "8.8.8.8", "About server. Used default 25565 port"]
+  ]
 }
