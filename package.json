@@ -1,0 +1,22 @@
+{
+  "name": "minecraftstatusbot",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/ncc build src/index.ts -o dist -m -t",
+    "start": "./node_modules/.bin/ts-node -r tsconfig-paths/register --files src/index.ts"
+  },
+  "author": "LexSerest",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "telegraf": "^4.4.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.31.1",
+    "ts-node": "^10.2.0",
+    "tsconfig-paths": "^3.10.1",
+    "typescript": "^4.3.5"
+  }
+}
