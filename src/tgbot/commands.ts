@@ -13,9 +13,14 @@ bot.command('status', async ctx => {
   }
 })
 
+let block = false;
 bot.action('reload', async ctx => {
+  if(block) return;
   try {
+    block=true;
+    setTimeout(() => block = false, 10000);
     let text = await getInfo();
+    text += "\n\nupd: " + new Date().toLocaleString()
     await ctx.editMessageText(text, {...markup, parse_mode: 'HTML', disable_web_page_preview: true})
   } catch (e) {
   } finally {

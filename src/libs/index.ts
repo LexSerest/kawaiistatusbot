@@ -10,9 +10,11 @@ export async function bot_start(bot: Telegraf){
     console.log('Bot start! @' + bot.botInfo.username)
   } catch (e) {
     console.log('[WARN]', e)
-    await sleep(6000);
-    bot.stop();
-    bot_start(bot);
+    process.exit();
+    //
+    // await sleep(6000);
+    // bot.stop();
+    // bot_start(bot);
   }
 }
 

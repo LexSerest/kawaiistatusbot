@@ -1,4 +1,5 @@
 config.json
+config.prod.json
 node_modules
 dist
 upload.sh

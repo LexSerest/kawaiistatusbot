@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "./node_modules/.bin/ncc build src/index.ts -o dist -m -t",
-    "start": "./node_modules/.bin/ts-node -r tsconfig-paths/register --files src/index.ts"
+    "build": "./node_modules/.bin/ncc build src/index.ts -o dist -m -t && npm run cp",
+    "start": "./node_modules/.bin/ts-node -r tsconfig-paths/register --files src/index.ts",
+    "cp": "cp src/config.prod.json dist/config.json"
   },
   "author": "LexSerest",
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^18.11.0",
     "axios": "^0.21.1",
     "telegraf": "^4.4.2"
   },

@@ -36,16 +36,21 @@ export function loadInfo(server, port= 25565, timeout = 3000, is_raw = false) {
     let read_byte = 0;
     let data = [];
     let status = 1;
+    let date = 0;
     try {
-      let sock = net.connect(port, server, () => sock.write(createBuffer(server, port)))
+      let sock = net.connect(port, server, () => {
+        date = Date.now();
+        sock.write(createBuffer(server, port))
+      })
       sock.setTimeout(timeout);
-      sock.on('error', e => res({ok: false, error: e.code}));
+      sock.on('error', (e: any) => res({ok: false, error: e.code}));
       sock.on('timeout', function () {
         sock.end();
         res({ok: false, error: 'timeout'})
       })
 
       sock.on('data', e => {
+        let time_reply = Date.now() - date;
         read_byte += e.length;
         if (status == 2) data.push(e);
         if (status == 1) {
@@ -64,6 +69,7 @@ export function loadInfo(server, port= 25565, timeout = 3000, is_raw = false) {
           try {
             if(is_raw) return res(data_str);
             else reply = JSON.parse(data_str);
+            reply.time_reply = time_reply;
             reply.ok = true;
           } catch (e) {
             console.log("JSON PARSE ERROR", e);
@@ -87,6 +93,7 @@ export async function parseInfo(server, port= 25565, timeout = 3000) {
   } else {
     const mods = getMods(data);
     if(mods.length) res.mods = mods;
+    res.times = data.time_reply;
 
     if (data.players) {
       res.count = data.players.online;
